@@ -357,7 +357,7 @@ int initUi(int argc, char *argv[]){
 
     builder = gtk_builder_new();
     //Load ui description from built resource - need to generate compiled source with glib-compile-resource
-    gtk_builder_add_from_resource(builder,"/org/gtk/wihotspot/wifih_t.ui",&error);
+    gtk_builder_add_from_resource(builder,"/home/ubuntu/linux-wifi-hotspot/src/ui/glade/wifih_t.ui",&error);
 
     /* Connect signal handlers to the constructed widgets. */
     window = gtk_builder_get_object(builder, "window");
