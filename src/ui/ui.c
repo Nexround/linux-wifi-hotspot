@@ -87,6 +87,7 @@ GtkProgressBar *progress_bar;
 
 GtkLabel *label_status;
 GtkLabel *label_input_error;
+GtkLabel *label_devices;
 
 GtkCssProvider* provider;
 GdkDisplay *display;
@@ -176,6 +177,12 @@ static void init_style_contexts(){
 
 static void set_error_text(char * text){
     gtk_label_set_label(label_input_error,text);
+}
+
+static void set_connected_devices(){
+     
+    gtk_label_set_label(label_devices, "test..");
+
 }
 
 static void* entry_mac_warn(GtkWidget *widget, gpointer data){
@@ -350,7 +357,7 @@ int initUi(int argc, char *argv[]){
 
     builder = gtk_builder_new();
     //Load ui description from built resource - need to generate compiled source with glib-compile-resource
-    gtk_builder_add_from_resource(builder,"/org/gtk/wihotspot/wifih.ui",&error);
+    gtk_builder_add_from_resource(builder,"/org/gtk/wihotspot/wifih_t.ui",&error);
 
     /* Connect signal handlers to the constructed widgets. */
     window = gtk_builder_get_object(builder, "window");
@@ -389,6 +396,7 @@ int initUi(int argc, char *argv[]){
 
     label_status = (GtkLabel *) gtk_builder_get_object(builder, "label_status");
     label_input_error = (GtkLabel *) gtk_builder_get_object(builder, "label_input_error");
+    label_devices = (GtkLabel *) gtk_builder_get_object(builder, "label_devices");
 
     progress_bar = (GtkProgressBar *) gtk_builder_get_object(builder, "progress_bar");
 

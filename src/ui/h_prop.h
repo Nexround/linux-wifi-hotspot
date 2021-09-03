@@ -59,4 +59,6 @@ void write_accepted_macs(char* filename, char* accepted_macs);
 
 char * read_mac_filter_file(char * filename);
 
+static int get_connected_devices();
+
 #endif //WIHOTSPOT_H_PROP_H

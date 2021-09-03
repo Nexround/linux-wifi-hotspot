@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/gtk/wihotspot">
-    <file preprocess="xml-stripblanks">wifih.ui</file>
+    <file preprocess="xml-stripblanks">wifih_t.ui</file>
   </gresource>
 
   <gresource prefix="/org/gtk/wihotspot">

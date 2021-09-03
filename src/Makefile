@@ -27,7 +27,7 @@ THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
 all: resources.c
 
-resources.c: ui/glade/wifih.gresource.xml ui/glade/wifih.ui
+resources.c: ui/glade/wifih.gresource.xml ui/glade/wifih_t.ui
 	$(GLIB_COMPILE_RESOURCES) ui/glade/wifih.gresource.xml --target=ui/$@ --sourcedir=ui/glade --generate-source
 	@$(MAKE) -f $(THIS_FILE) wihotspot-gui
 	

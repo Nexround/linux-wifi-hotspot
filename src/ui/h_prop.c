@@ -254,6 +254,14 @@ static int init_get_running(){
 
 }
 
+static int get_connected_devices(){
+    char cmd[BUFSIZE];
+    snprintf(cmd, BUFSIZE, "%s %s --list-clients",SUDO, CREATE_AP);
+    FILE *fp;
+    fp = popen(cmd, "r");
+    // 返回字符串
+}
+
 
 // Ex:
 // char *a[3];
