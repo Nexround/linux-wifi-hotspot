@@ -547,7 +547,7 @@
             <property name="halign">end</property>
             <child>
               <object class="GtkButton" id="button_about">
-                <property name="label" translatable="yes">About</property>
+                <property name="label" translatable="yes">aaaa</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
