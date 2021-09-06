@@ -396,7 +396,7 @@ int initUi(int argc, char *argv[]){
 
     label_status = (GtkLabel *) gtk_builder_get_object(builder, "label_status");
     label_input_error = (GtkLabel *) gtk_builder_get_object(builder, "label_input_error");
-    label_devices = (GtkLabel *) gtk_builder_get_object(builder, "label_devices");
+    label_devices = (GtkLabel *) gtk_builder_get_object(builder, "label_devices"); //new
 
     progress_bar = (GtkProgressBar *) gtk_builder_get_object(builder, "progress_bar");
 
