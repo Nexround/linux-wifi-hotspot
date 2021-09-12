@@ -47,7 +47,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define LOAD_CONFIG "--config"
 #define STOP "--stop"
 
-
 static char cmd_start[BUFSIZE];
 static char cmd_mkconfig[BUFSIZE];
 static char cmd_config[BUFSIZE];
@@ -254,14 +253,60 @@ static int init_get_running(){
 
 }
 
-static int get_connected_devices(){
+Node get_connected_devices(char *PID)
+{
     char cmd[BUFSIZE];
-    snprintf(cmd, BUFSIZE, "%s %s --list-clients",SUDO, CREATE_AP);
+    snprintf(cmd, BUFSIZE, "%s --list-clients %s", CREATE_AP, PID);
     FILE *fp;
+    Node l = (struct Device *)malloc(sizeof(struct Device));
+    Position head = l;
     fp = popen(cmd, "r");
-    // 返回字符串
+    char line[BUFSIZE];
+
+    int _n = 0;//设备序号
+    while (fgets(line, BUFSIZE, fp) != NULL)
+    {
+        if (strstr(line, "MAC") != NULL) continue;
+
+        _n++; 
+        int size = strlen(line);
+        int marker[3] = {0};
+        int n = 0;// for marker
+        line[size-1] = '\0'; //remove "\n"
+        for (int i = 0; i < size; i++)
+        {
+            if (*(line + i) != ' ' && *(line + i + 1) == ' ')
+            {
+                //尾
+                *(line + i + 1) = '\0';
+                i++;
+            }
+            if (*(line + i) == ' ' && *(line + i + 1) != ' ')
+            {
+                //头
+                *(line + i) = '\0';
+                marker[++n] = i + 1;
+            }
+
+        }
+        // printf("%s,%s,%s,%d\n", line, line + marker[1], line + marker[2], _n);
+        l = add_device_node(l, _n, line, marker);
+    }
+
+    return head;
 }
 
+PtrToNode add_device_node(PtrToNode l, int number, char line[BUFSIZE], int marker[3])
+{
+    Node next = (PtrToNode)malloc(sizeof(struct Device));
+    strcpy(next->MAC, line);
+    strcpy(next->IP, line + marker[1]);
+    strcpy(next->HOSTNAME, line + marker[2]);
+    next->Number = number;
+    next->Next = NULL;
+    l->Next = next;
+    return next;
+}
 
 // Ex:
 // char *a[3];
